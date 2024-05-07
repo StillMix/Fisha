@@ -1,0 +1,72 @@
+.CardKino{
+    border-radius: 10px;
+width: 320px;
+height: 213px;
+box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);
+background: #fff;
+margin-top: 15px;
+cursor: pointer;
+}
+
+  
+  .CardKino:active{
+      opacity: 0.8;
+  }
+  
+  
+  .CardKino__img {
+    border-radius: 10px;
+  }
+  
+  .CardKino__containerOp {
+    display: flex;
+    width: 287px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .CardKino__container {
+    margin-top: 12px;
+  }
+  
+  .CardKino__container:first-child {
+    width: 155px;
+  }
+  
+  .CardKino__container:last-child {
+    margin-left: auto;
+    margin-right: 0;
+  }
+  
+  .CardKino__title {
+    font-weight: 400;
+    font-size: 10px;
+    color: #000;
+  }
+  
+  .CardKino__subtitle {
+    font-family: "Benzin-Regular", "Arial", sans-serif;
+    font-weight: 400;
+    font-size: 7px;
+    color: #a1a1a1;
+    width: 107px;
+  }
+  
+  .CardKino__bil {
+    text-align: center;
+    font-weight: 400;
+    font-size: 7px;
+    color: #fff;
+    padding: 5px 8px;
+    background: #000;
+    border-radius: 10px;
+  }
+  
+  .CardKino__otzak{
+      margin-top: 10px;
+      font-weight: 400;
+      font-size: 7px;
+      color: #000;
+  }
+  
+  

@@ -1,6 +1,7 @@
 import React from "react";
 import "./MainCardKinot.css";
 
+
 function MainCardKinot(props) {
     const currentDateTime = new Date(new Date().getTime() + 3 * 60 * 60 * 1000);
     const currentTime = currentDateTime.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });

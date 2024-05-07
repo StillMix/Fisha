@@ -1,10 +1,10 @@
-.disabled{
+.disabled {
   opacity: 0;
   display: none;
   visibility: hidden;
 }
 
-.kinoOpi {
+.FilmOpi {
   background: white;
   position: absolute;
   top: 0;
@@ -13,14 +13,15 @@
   height: 100vh;
 }
 
-.kinoOpi__img {
+.FilmOpi__img {
+  object-fit: cover;
   position: absolute;
   z-index: 0;
   width: 360px;
   height: 258px;
 }
 
-.kinoOpi__arrow {
+.FilmOpi__arrow {
   z-index: 1;
   position: absolute;
   left: 15px;
@@ -28,7 +29,7 @@
   width: 21px;
 }
 
-.kinoOpi__textcont {
+.FilmOpi__textcont {
   border-radius: 10px 10px 0 0;
   z-index: 1;
   position: absolute;
@@ -38,9 +39,7 @@
   min-height: 40px;
 }
 
-
-
-.kinoOpi__title {
+.FilmOpi__title {
   margin-left: 22px;
   font-weight: 400;
   font-size: 20px;
@@ -48,22 +47,61 @@
   margin-top: 22px;
 }
 
-.kinoOpi__opi {
+.FilmOpi__subtitle {
+  margin-left: 22px;
+  font-weight: 400;
+  font-size: 7px;
+  color: #000;
+}
+.FilmOpi__containers {
+  display: flex;
+  width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 21px;
+}
+
+.FilmOpi__kinot {
+  font-weight: 400;
+  font-size: 10px;
+  color: #000;
+}
+
+.FilmOpi__adres {
+  font-weight: 400;
+  font-size: 8px;
+  text-align: right;
+  color: #a1a1a1;
+  width: 121px;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.FilmOpi__btn {
+  border-radius: 53px;
+  width: 320px;
+  height: 37px;
+  background: #000;
+  display: block;
+  font-weight: 400;
+  font-size: 10px;
+  text-align: center;
+  color: #fff;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  outline: none;
+  border: none;
+}
+
+.FilmOpi__opi {
   margin-left: 22px;
   display: flex;
   align-items: center;
   width: 320px;
 }
 
-.kinoOpi__subtitle {
-  font-family: "Benzin-Regular", "Arial", sans-serif;
-  width: 150px;
-  font-weight: 400;
-  font-size: 8px;
-  color: #a1a1a1;
-}
-
-.kinoOpi__otr {
+.FilmOpi__otr {
   margin-left: auto;
   margin-right: 0;
   font-weight: 400;
@@ -71,7 +109,7 @@
   color: #000;
 }
 
-.kinoOpi__bil {
+.FilmOpi__bil {
   margin-left: 22px;
   margin-top: 13px;
   width: 108px;
@@ -86,7 +124,7 @@
   border-radius: 30px;
 }
 
-.kinoOpi__container {
+.FilmOpi__container {
   margin-left: 22px;
   position: relative;
   display: block;
@@ -99,17 +137,14 @@
   margin-top: 17px;
 }
 
-
-.kinoOpi__container_title{
-  
+.FilmOpi__container_title {
   margin-left: 16px;
   font-weight: 400;
   font-size: 10px;
   color: #000;
 }
 
-.kinoOpi__container_text{
-  
+.FilmOpi__container_text {
   margin-top: 4px;
   width: 291px;
   margin-left: 17px;
@@ -119,15 +154,15 @@
   color: #a1a1a1;
 }
 
-.kinoOpi__predsob{
+.FilmOpi__predsob {
   margin-left: 22px;
   margin-top: 19px;
   font-weight: 400;
-font-size: 12px;
-color: #000;
+  font-size: 12px;
+  color: #000;
 }
 
-.kinoOpi__cards{
+.FilmOpi__cards {
   margin-left: 22px;
   padding-bottom: 15px;
 }
