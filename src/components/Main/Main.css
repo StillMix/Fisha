@@ -1,0 +1,30 @@
+.main__texts {
+  display: flex;
+  align-items: center;
+  width: 317px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 59px;
+}
+
+.main__textkino {
+  font-weight: 400;
+  font-size: 15px;
+  color: #000;
+}
+
+.main__textkur {
+  font-weight: 400;
+  font-size: 10px;
+  color: #006eac;
+  margin-left: auto;
+  margin-right: 4px;
+}
+
+
+.main__cards{
+    width: 317px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 18px;
+}
