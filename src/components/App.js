@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Menu from "./Menu/Menu";
 import Main from "./Main/Main";
 import KinoOpi from "./KinoOpi/KinoOpi";
