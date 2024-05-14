@@ -12,7 +12,7 @@ function App() {
   const [selectedkinoOp, setselectedkinoOp] = useState(null);
   const [iskinoOpen, setIskinoOpen] = useState(false);
   const [selectedkino, setselectedkino] = useState(null);
-  const navigate = useNavigate();
+
   return (
     <div className="App">
       <Routes>

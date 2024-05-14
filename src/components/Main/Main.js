@@ -33,7 +33,7 @@ function Main(props) {
       <div className="main__texts">
         <p className="main__textkino">КИНОТЕАТРЫ</p>
         <p className="main__textkur">КУРСК</p>
-        <img src={Geo} className="main__textgeo" />
+        <img src={Geo} alt="img"  className="main__textgeo" />
       </div>
       <div className="main__cards">
       {initialCards.map((card) => (

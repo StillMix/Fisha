@@ -1,6 +1,6 @@
 import React from "react";
 import "./CardKino.css";
-import Arrow from "../../images/arrow.svg";
+
 
 
 function CardKino(props) {
@@ -11,7 +11,7 @@ function CardKino(props) {
     }
   return (
     <div className="CardKino" onClick={handleClick}>
-      <img className="CardKino__img" src={props.link} />
+      <img className="CardKino__img" alt="img" src={props.link} />
       <div className="CardKino__containerOp">
       <div className="CardKino__container">
         <p className="CardKino__title">{props.name}</p>

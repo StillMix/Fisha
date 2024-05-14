@@ -6,8 +6,6 @@ function MainCardKinot(props) {
     const currentDateTime = new Date(new Date().getTime() + 3 * 60 * 60 * 1000);
     const currentTime = currentDateTime.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
   
-    const otr = new Date(`01/01/2024 ${props.otr}`);
-    const zakr = new Date(`01/01/2024 ${props.zakr}`);
 
     let statusText;
     let statusColor;
@@ -26,7 +24,7 @@ function MainCardKinot(props) {
   
   return (
     <div className="mainCardKinot" onClick={handleClick}>
-      <img className="mainCardKinot__img" src={props.imgSrc} />
+      <img className="mainCardKinot__img" alt="img"  src={props.imgSrc} />
       <div className="mainCardKinot__containerOp">
       <div className="mainCardKinot__container">
         <p className="mainCardKinot__title">{props.name}</p>

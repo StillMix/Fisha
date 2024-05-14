@@ -30,10 +30,10 @@ function KinoOpi(props) {
 }
   return (
     <div className={` ${props.open ? 'kinoOpi' : 'disabled'}`}>
-      <img className="kinoOpi__arrow" onClick={handleClick} src={Arrow} />
+      <img className="kinoOpi__arrow" alt="img"  onClick={handleClick} src={Arrow} />
       {props.card && (
         <>
-          <img className="kinoOpi__img" src={props.card.imgSrc} />
+          <img className="kinoOpi__img" alt="img"  src={props.card.imgSrc} />
           <div className="kinoOpi__textcont">
             <p className="kinoOpi__title">{props.card.name}</p>
             <div className="kinoOpi__opi">

@@ -10,10 +10,10 @@ function FilmOpi(props) {
 }
   return (
     <div className={` ${props.open ? 'FilmOpi' : 'disabled'}`}>
-      <img className="FilmOpi__arrow" onClick={handleClick} src={Arrow} />
+      <img className="FilmOpi__arrow" alt="img"  onClick={handleClick} src={Arrow} />
       {props.card && (
         <>
-          <img className="FilmOpi__img" src={props.card.link} />
+          <img className="FilmOpi__img" alt="img"  src={props.card.link} />
           <div className="FilmOpi__textcont">
             <p className="FilmOpi__title">{props.card.name}</p>
             <p className="FilmOpi__subtitle">ДЛИТЕЛЬНОСТЬ: {props.card.dl}</p>
