@@ -54,7 +54,7 @@ function KinoOpi(props) {
             <p className="kinoOpi__predsob">ПРЕДСТОЯЩИЕ СОБЫТИЯ</p>
             <div className="kinoOpi__cards">
       {initialCards.map((card) => (
-            <CardKino key={card.key} setKinoOpen={props.setOpen} setOpen={props.SetOpenKino} setCard={props.cardSetKino} adres={props.card.adres} kinot={props.card.name} name={card.name} link={card.link} about={card.about} dl={card.dl} stoim={card.stoim}/>
+            <CardKino key={card.key}  setKinoOpen={props.setOpen} setOpen={props.SetOpenKino} setCard={props.cardSetKino} adres={props.card.adres} kinot={props.card.name} name={card.name} link={card.link} about={card.about} dl={card.dl} stoim={card.stoim}/>
           ))}
       </div>
           </div>

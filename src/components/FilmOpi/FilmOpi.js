@@ -8,6 +8,10 @@ function FilmOpi(props) {
     props.setOpen(false);
     props.setKinoOpen(true);
 }
+function handleSubmit(){
+  props.dopCard(props.card.name)
+}
+
   return (
     <div className={` ${props.open ? 'FilmOpi' : 'disabled'}`}>
       <img className="FilmOpi__arrow" alt="img"  onClick={handleClick} src={Arrow} />
@@ -22,7 +26,7 @@ function FilmOpi(props) {
                 <p className="FilmOpi__kinot">{props.card.kinot}</p>
                 <p className="FilmOpi__adres">{props.card.adres}</p>
             </div>
-            <button className="FilmOpi__btn">КУПИТЬ БИЛЕТ</button>
+            <button className="FilmOpi__btn" onClick={handleSubmit}>КУПИТЬ БИЛЕТ</button>
             <div className="FilmOpi__container">
               <p className="FilmOpi__container_title">О фильме</p>
               <p className="FilmOpi__container_text">

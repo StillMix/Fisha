@@ -9,22 +9,14 @@ import Login from "./Login/Login";
 import {mestoAuth} from '../utils/Auth';
 import api from '../utils/Api.js';
 import Register from "./Register/Register.js";
+import Profile from "./Profile/Profile.js";
 
 function App() {
   const [iskinoOpiOpen, setIskinoOpiOpen] = useState(false);
   const [selectedkinoOp, setselectedkinoOp] = useState(null);
   const [iskinoOpen, setIskinoOpen] = useState(false);
   const [selectedkino, setselectedkino] = useState(null);
-  const [loggedIn, setloggedIn] = useState(false);
-  const [userEmail, setuserEmail] = useState(null);
-  const [currentUser, setCurrentUser] = useState(null);
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
-  const [isAddPlacePopupOpen, setisAddPlacePopupOpen] = useState(false);
-  const [isEditAvatarPopupOpen, setisEditAvatarPopupOpen] = useState(false);
-  const [isImagePopupOpen, setisImagePopupOpen] = useState(false);
-  const [isUserEmailInfoOpen, setisUserEmailInfoOpen] = useState(false);
-  const [isInfoToolTip, setisInfoToolTip] = useState(false);
-  const [selectedCard, setselectedCard] = useState(null);
+
   const [cards, setCards] = useState([])
 
   const navigate = useNavigate();
@@ -35,19 +27,54 @@ function App() {
     navigate('/reg')
   }
 
+  function backUser(){
+    api.backUser().then((data)=>{
+      localStorage.removeItem('jwt');
+      console.log(data)
+    })
+    .catch((err) => {
+        console.log(err)
+    });
+  
+  }
+  
 
+  function handleCardLike(card) {
+    console.log(card)
+    api.changeLikeCardStatus(card._id).then((data) => {
+        setCards(data.data);
+    }).catch((err) => {
+      console.log(err)
+  });
+  }
 
+  function addCard(card){
+    if (!card) {
+      return;
+    }else{
+    
+    api.addCard(card).then((data)=>{
+      setCards([data.data, ...cards]);
+      console.log(cards)
+      const len = cards.length - 1
+      handleCardLike(cards[len])
+    })
+    .catch((err) => {
+        console.log(err)
+    });
+  }
+  }
   
  
 
  function get() {
   api.getUserInfo().then((user) => {
     if(user){
-      setCurrentUser(user);
+
       api.getCards().then((data) => {
         if(data){
         setCards(data.data)
-        setloggedIn(true)
+        
         navigate('/main');
         }
     }).catch((err) => {
@@ -59,33 +86,8 @@ function App() {
 });
 }
 
-function tokenCheck() {
-  if(localStorage.getItem('jwt')){
- mestoAuth.getContent().then((res) => {
-   if(res.message === 'Необходима авторизация'){
-    console.log(res)
-   }else{
-     const jwt = res;
-     setuserEmail(jwt.data.email)
-     setCurrentUser(res);
-   api.getCards().then((data) => {
-     if(data){
-     setCards(data.data)
-     setloggedIn(true)
-    navigate('/main');
-     }
- }).catch((err) => {
-     console.log(err)
- })
-   }
- }).catch(err => console.log(err));
-}
-}
  
-function handleLogin(email){
-  setuserEmail(email)
-  setloggedIn(true)
-}
+
 
 function login(log) {
   if (!log){
@@ -96,7 +98,6 @@ function login(log) {
     if (data.message === 'Неправильные почта или пароль'){
       console.log(data)
     }else{
-      handleLogin(log.LoginInput);
       get()
       localStorage.setItem('jwt', log.LoginInput);
     }
@@ -112,30 +113,47 @@ function register(reg) {
     if(res){
         navigate('/');
 
-    } else {
-      setisInfoToolTip(true)
-
-    }
+    } 
 }).catch(err =>{
   console.log(err)
-  setisInfoToolTip(true)
+
 });
 }
 
 
  React.useEffect(() =>{
-  tokenCheck()
- },[])
+  if(localStorage.getItem('jwt')){
+    mestoAuth.getContent().then((res) => {
+      if(res.message === 'Необходима авторизация'){
+       console.log(res)
+      }else{
+   
+   
+       
+      api.getCards().then((data) => {
+        if(data){
+        setCards(data.data)
+        
+       navigate('/main');
+        }
+    }).catch((err) => {
+        console.log(err)
+    })
+      }
+    }).catch(err => console.log(err));
+   }
+ },[navigate])
   return (
     <div className="App">
       <Routes>
       <Route exact path="/reg" element={<Register handleSubmit={register} toLogin={toLogin}/>} />
       <Route exact path="/" element={<Login handleSubmit={login} toReg={toReg}/>} />
         <Route exact path="/main" element={<Main cardSel={setselectedkinoOp} openkino={setIskinoOpiOpen} />} />
-        <Route exact path="/mybil" element={<Mybil />} />
+        <Route exact path="/mybil" element={<Mybil card={cards}/>} />
+        <Route exact path="/profile" element={<Profile back={backUser} navigate={navigate}/>} />
       </Routes>
       <KinoOpi cardSetKino={setselectedkino} SetOpenKino={setIskinoOpen}  card={selectedkinoOp} setOpen={setIskinoOpiOpen} open={iskinoOpiOpen}/>
-      <FilmOpi card={selectedkino} setOpen={setIskinoOpen} open={iskinoOpen} setKinoOpen={setIskinoOpiOpen}/>
+      <FilmOpi card={selectedkino} dopCard={addCard} setOpen={setIskinoOpen} open={iskinoOpen} setKinoOpen={setIskinoOpiOpen}/>
     </div>
   );
 }

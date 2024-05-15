@@ -1,14 +1,29 @@
 import React from "react";
 import "./Mybil.css";
 import Menu from '../Menu/Menu';
-
+import chebur from '../../images/chebur.png';
+import brat from '../../images/brat.png';
 
 function Mybil(props) {
   return (
+    <>
     <div className="Mybil">
-         МОИ БИЛЕТЫ
+        <p className="mybil__title">МОИ БИЛЕТЫ</p> 
+         {props.card && props.card.map(card => {
+          return (
+            <div className="card">
+               {card.name === "ЧЕБУРАШКА"? 
+                    <img alt="img" src={chebur} />
+                :
+                <img alt="img" src={brat} />
+              }
+              <p className="card__title">{card.name}</p>
+            </div>
+          )
+         })}
          <Menu />
     </div>
+    </>
   );
 }
 

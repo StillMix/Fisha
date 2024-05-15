@@ -38,7 +38,7 @@ function Main(props) {
       </div>
       <div className="main__cards">
       {initialCards.map((card) => (
-            <MainCardKinot open={props.openkino} card={props.cardSel} key={card.key} name={card.name} imgSrc={card.link} ot={card.ot}  otr={card.otr} zakr={card.zakr} adres={card.adres}/>
+            <MainCardKinot dopCard={props.dopCard} open={props.openkino} card={props.cardSel} key={card.key} name={card.name} imgSrc={card.link} ot={card.ot}  otr={card.otr} zakr={card.zakr} adres={card.adres}/>
           ))}
       </div>
       <Menu />
