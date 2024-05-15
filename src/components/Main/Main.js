@@ -4,6 +4,7 @@ import Geo from "../../images/geo.svg";
 import kinotlife from "../../images/kinot/kinotkinolife.png";
 import kinotstar from "../../images/kinot/kinotkinostar.png";
 import MainCardKinot from "../MainCardKinot/MainCardKinot";
+import Menu from '../Menu/Menu';
 
 const initialCards = [
   {
@@ -40,6 +41,7 @@ function Main(props) {
             <MainCardKinot open={props.openkino} card={props.cardSel} key={card.key} name={card.name} imgSrc={card.link} ot={card.ot}  otr={card.otr} zakr={card.zakr} adres={card.adres}/>
           ))}
       </div>
+      <Menu />
     </div>
   );
 }
