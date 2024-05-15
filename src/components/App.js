@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Main from "./Main/Main";
 import KinoOpi from "./KinoOpi/KinoOpi";
 import FilmOpi from "./FilmOpi/FilmOpi";
@@ -18,8 +18,8 @@ function App() {
   const [selectedkino, setselectedkino] = useState(null);
 
   const [cards, setCards] = useState([])
-
   const navigate = useNavigate();
+  const location = useLocation();
   function toLogin() {
     navigate('/')
   }
@@ -27,6 +27,34 @@ function App() {
     navigate('/reg')
   }
 
+
+  
+  function handleCardLike(card) {
+    console.log(card)
+    api.changeLikeCardStatus(card._id).then((data) => {
+        setCards(data.data);
+    }).catch((err) => {
+      console.log(err)
+  });
+  }
+  
+  
+  
+  function addCard(card){
+    if (!card) {
+      return;
+    }else{
+    api.addCard(card).then((data)=>{
+      setCards([data.data, ...cards]);
+      const len = cards.length - 1
+      handleCardLike(cards[len])
+    })
+    .catch((err) => {
+        console.log(err)
+    });
+  }
+  }
+  
   function backUser(){
     api.backUser().then((data)=>{
       localStorage.removeItem('jwt');
@@ -39,43 +67,13 @@ function App() {
   }
   
 
-  function handleCardLike(card) {
-    console.log(card)
-    api.changeLikeCardStatus(card._id).then((data) => {
-        setCards(data.data);
-    }).catch((err) => {
-      console.log(err)
-  });
-  }
-
-  function addCard(card){
-    if (!card) {
-      return;
-    }else{
-    
-    api.addCard(card).then((data)=>{
-      setCards([data.data, ...cards]);
-      console.log(cards)
-      const len = cards.length - 1
-      handleCardLike(cards[len])
-    })
-    .catch((err) => {
-        console.log(err)
-    });
-  }
-  }
-  
- 
-
  function get() {
   api.getUserInfo().then((user) => {
     if(user){
-
       api.getCards().then((data) => {
         if(data){
         setCards(data.data)
-        
-        navigate('/main');
+        navigate('/main')
         }
     }).catch((err) => {
         console.log(err)
@@ -85,64 +83,70 @@ function App() {
     console.log(err)
 });
 }
-
  
-
-
-function login(log) {
-  if (!log){
-    return;
-  }
-
-  mestoAuth.authorize(log.PasswordInput,log.LoginInput).then((data) => {
-    if (data.message === 'Неправильные почта или пароль'){
-      console.log(data)
-    }else{
-      get()
-      localStorage.setItem('jwt', log.LoginInput);
-    }
-  })
-  .catch(err => console.log(err));
-}
-
- 
-
- 
-function register(reg) {
-  mestoAuth.register(reg.PasswordInput,reg.EmailInput, reg.LoginInput).then((res) => {
-    if(res){
-        navigate('/');
-
-    } 
-}).catch(err =>{
-  console.log(err)
-
-});
-}
-
-
- React.useEffect(() =>{
-  if(localStorage.getItem('jwt')){
-    mestoAuth.getContent().then((res) => {
-      if(res.message === 'Необходима авторизация'){
-       console.log(res)
-      }else{
-   
-   
-       
-      api.getCards().then((data) => {
-        if(data){
-        setCards(data.data)
-        
-       navigate('/main');
-        }
-    }).catch((err) => {
-        console.log(err)
-    })
-      }
-    }).catch(err => console.log(err));
+ function login(log) {
+   if (!log){
+     return;
    }
- },[navigate])
+ 
+   mestoAuth.authorize(log.PasswordInput, log.LoginInput).then((data) => {
+     if (data.message === 'Неправильные почта или пароль'){
+       console.log(data)
+     }else{
+       get()
+       localStorage.setItem('jwt', log.LoginInput);
+     }
+   })
+   .catch(err => console.log(err));
+ }
+ 
+ 
+ 
+ function register(reg) {
+   mestoAuth.register(reg.PasswordInput,reg.EmailInput, reg.LoginInput).then((res) => {
+     if(res){
+      navigate('/')
+ 
+     } else {
+
+ 
+     }
+ }).catch(err =>{
+   console.log(err)
+
+ });
+ }
+ 
+
+ 
+ useEffect(() => {
+  const handleNavigation = () => {
+    if (localStorage.getItem('jwt')) {
+      mestoAuth.getContent().then((res) => {
+        if (res.message === 'Необходима авторизация') {
+          console.log(res);
+          navigate('/')
+        } else {
+          api.getCards().then((data) => {
+            if (data) {
+              setCards(data.data);
+              if (location.pathname === '/') {
+                navigate('/main');
+              }
+            }
+          }).catch((err) => {
+            console.log(err);
+          });
+        }
+      }).catch((err) => console.log(err));
+    }
+  };
+
+  handleNavigation();
+}, [location, navigate]);
+
+
+
   return (
     <div className="App">
       <Routes>

@@ -4,6 +4,25 @@
 }
 
 .card{
+    display: flex;
+    align-items: center;
     margin-left: 15px;
     margin-top: 15px;
+    border-radius: 10px;
+width: 317px;
+height: 87px;
+box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);
+background: #fff;
+}
+
+.card img{
+    border-radius: 10px;
+width: 111px;
+height: 87px;
+object-fit: cover;
+}
+
+.card__title{
+    margin-left: auto;
+    margin-right: 10px
 }

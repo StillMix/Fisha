@@ -21,7 +21,7 @@ class Api {
         });
     }
 
-    addCard(name) {
+    addCard(balance) {
         return fetch(`${this._url}/cards`, {
             method: 'POST',
             headers: {
@@ -29,7 +29,7 @@ class Api {
             },
             credentials: 'include',
             body: JSON.stringify({
-                name: name
+                balance: balance
             }),
         }).then((res) => {
             return this._check(res)

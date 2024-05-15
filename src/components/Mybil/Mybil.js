@@ -12,12 +12,12 @@ function Mybil(props) {
          {props.card && props.card.map(card => {
           return (
             <div className="card">
-               {card.name === "ЧЕБУРАШКА"? 
+               {card.balance === "ЧЕБУРАШКА"? 
                     <img alt="img" src={chebur} />
                 :
                 <img alt="img" src={brat} />
               }
-              <p className="card__title">{card.name}</p>
+              <p className="card__title">{card.balance}</p>
             </div>
           )
          })}
